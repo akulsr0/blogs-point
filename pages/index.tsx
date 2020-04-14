@@ -34,16 +34,18 @@ const IndexPage = () => {
           <input
             type='text'
             placeholder='Email'
+            className='input-field'
             onChange={(e) => setEmail(e.target.value)}
           />{' '}
           <br />
           <input
             type='password'
             placeholder='Password'
+            className='input-field'
             onChange={(e) => setPassword(e.target.value)}
           />{' '}
           <br />
-          <button style={{ width: '100%' }} onClick={loginUser}>
+          <button className='button-submit' onClick={loginUser}>
             Login
           </button>
         </div>

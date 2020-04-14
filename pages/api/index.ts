@@ -22,7 +22,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
-        console.log(user);
         if (user) {
           const authResult = await bcrypt.compare(password, user.password);
           if (authResult) {

@@ -1,12 +1,21 @@
+import useSWR from 'swr';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 import { useState } from 'react';
+import Router from 'next/router';
+
+const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 const Register = () => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { data } = useSWR('/api/index', fetcher);
+  if (data) {
+    Router.push('/');
+  }
 
   const registerUser = () => {
     fetch('/api/register', {
@@ -36,28 +45,32 @@ const Register = () => {
           <input
             type='text'
             placeholder='Name'
+            className='input-field'
             onChange={(e) => setName(e.target.value)}
           />{' '}
           <br />
           <input
             type='text'
             placeholder='Username'
+            className='input-field'
             onChange={(e) => setUsername(e.target.value)}
           />{' '}
           <br />
           <input
             type='text'
             placeholder='Email'
+            className='input-field'
             onChange={(e) => setEmail(e.target.value)}
           />{' '}
           <br />
           <input
             type='password'
             placeholder='Password'
+            className='input-field'
             onChange={(e) => setPassword(e.target.value)}
           />{' '}
           <br />
-          <button style={{ width: '100%' }} onClick={registerUser}>
+          <button className='button-submit' onClick={registerUser}>
             Register
           </button>
         </div>
