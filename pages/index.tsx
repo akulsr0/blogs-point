@@ -1,24 +1,25 @@
+import useSWR from 'swr';
 import Link from 'next/link';
+import Router from 'next/router';
 import { useState } from 'react';
-// import useSWR from 'swr';
-// import fetch from 'isomorphic-unfetch';
 
-// const fetcher = (url: any) => fetch(url).then((res) => res.json());
+const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 const IndexPage = () => {
-  // const { data } = useSWR('/api/index', fetcher);
-  // console.log(data);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { data } = useSWR('/api/index', fetcher);
+  if (data) {
+    Router.push('/dasboard');
+  }
+
   const loginUser = () => {
-    console.log('hitt');
-    fetch('/api', {
+    fetch('/api/index', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: email,
+        email: email,
         password: password,
       }),
     });
