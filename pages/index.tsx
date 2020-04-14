@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import Link from 'next/link';
-import Router from 'next/router';
 import { useState } from 'react';
+import Dashboard from '../components/Dashboard';
 
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
@@ -11,7 +11,7 @@ const IndexPage = () => {
 
   const { data } = useSWR('/api/index', fetcher);
   if (data) {
-    Router.push('/dasboard');
+    return <Dashboard />;
   }
 
   const loginUser = () => {

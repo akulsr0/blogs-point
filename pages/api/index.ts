@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (method) {
     case 'GET': {
       const tokenCookie = req.headers.cookie;
-      if (tokenCookie != undefined) {
+      if (tokenCookie != undefined && tokenCookie.split('=')[1].length > 1) {
         const token = tokenCookie.split('=')[1];
         const decoded = jwt.verify(token, 'secretsecret');
         const user = await User.findById(decoded.id);
