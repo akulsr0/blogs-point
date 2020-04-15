@@ -9,13 +9,13 @@ const IndexPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { data } = useSWR('/api/index', fetcher);
+  const { data } = useSWR('/api/auth', fetcher);
   if (data) {
     return <Dashboard />;
   }
 
   const loginUser = () => {
-    fetch('/api/index', {
+    fetch('/api/auth', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
