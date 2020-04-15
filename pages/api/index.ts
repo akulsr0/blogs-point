@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import '../../utils/db';
 import User from '../../models/User';
+import Blog from '../../models/Blog';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -13,7 +14,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const token = tokenCookie.split('=')[1];
         const decoded = jwt.verify(token, 'secretsecret');
         const user = await User.findById(decoded.id);
-        return res.status(202).json({ user });
+        const blogs = await Blog.find({});
+        return res.status(202).json({ user, blogs });
       }
       res.status(200).end();
       break;
