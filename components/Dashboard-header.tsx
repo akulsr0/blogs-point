@@ -5,7 +5,7 @@ import Router from 'next/router';
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 const Dashboard = () => {
-  const { data } = useSWR('/api/index', fetcher);
+  const { data } = useSWR('/api/auth', fetcher);
 
   const logoutUser = async () => {
     await fetch('/api/logout', { method: 'POST' });

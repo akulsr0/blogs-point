@@ -6,7 +6,7 @@ import Link from 'next/link';
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 const Dashboard = () => {
-  const { data } = useSWR('/api/index', fetcher);
+  const { data } = useSWR('/api/auth', fetcher);
   const { user, blogs } = data;
   console.log(blogs);
   if (user) {
