@@ -34,6 +34,19 @@ const NewBlog = () => {
     return (
       <div className='container'>
         <DashboardHeader />
+        <h5 className='cursor-pointer mt-4 font-weight-bold'>
+          Instructions on how to create a blog
+        </h5>
+        <p className='m-0'>- Add your blog title in the name field</p>
+        <p className='m-0'>
+          - Add tags like (comma seperated) eg. webdev, javascript
+        </p>
+        <p className='m-0'>
+          - Write your blogs on Github in a markdown file and add its raw link
+          here
+        </p>
+
+        <hr style={{ width: '100%' }} />
         <div className='my-blogs-div mt-4'>
           <h4 className='font-weight-bold'>Create New Blog</h4>
           <input
