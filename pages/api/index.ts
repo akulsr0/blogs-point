@@ -12,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const tokenCookie = req.headers.cookie;
       if (tokenCookie != undefined && tokenCookie.split('=')[1].length > 1) {
         const token = tokenCookie.split('=')[1];
-        const decoded = jwt.verify(token, 'secretsecret');
+        const decoded: any = jwt.verify(token, 'secretsecret');
         const user = await User.findById(decoded.id);
         const blogs = await Blog.find({});
         return res.status(202).json({ user, blogs });
